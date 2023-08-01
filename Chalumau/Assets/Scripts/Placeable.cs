@@ -8,7 +8,6 @@ public class Placeable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (m_inPlacement)
         {
             if (Input.GetMouseButtonDown(0))
@@ -16,7 +15,8 @@ public class Placeable : MonoBehaviour
                 PlaceBuilding();
                 return;
             }
-            UpdateBuildingPlacement();
+            UpdateBuildingLocation();
+            UpdateBuildingRotation();
         }
     }
 
@@ -25,7 +25,7 @@ public class Placeable : MonoBehaviour
         m_inPlacement = false;
     }
 
-    void UpdateBuildingPlacement()
+    void UpdateBuildingLocation()
     {
         //TODO MF: All this should be cleaned
         LayerMask layerMask = 1 << LayerMask.NameToLayer("Plane"); ;
@@ -38,6 +38,18 @@ public class Placeable : MonoBehaviour
                Mathf.Floor(hit.point.z));
 
             transform.position = clippedPoint;
+        }
+    }
+
+    void UpdateBuildingRotation()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.Rotate(new Vector3(0, 90, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.Rotate(new Vector3(0, -90, 0));
         }
     }
 }
