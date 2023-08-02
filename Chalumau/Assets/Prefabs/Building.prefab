@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c2d8d2d8ed44f48a58804129b77d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_transformToLookAt: {fileID: 0}
 --- !u!1 &945910497
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +472,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_clippingUnitValue: 1
+  m_buildingData: {fileID: 11400000, guid: 193b6ddd9b00c574ab7196913be83060, type: 2}
+  m_invalidMaterial: {fileID: 2100000, guid: c70e075a2144ba04784d74b7b2889fd3, type: 2}
+  m_validMaterial: {fileID: 2100000, guid: 0e6d9344d5bbb9a4abca1058f4e295d6, type: 2}
+  m_placedMaterial: {fileID: 2100000, guid: 41680dad0f0243748b4e228f49a2e3c4, type: 2}
+  m_direction: 0
 --- !u!1001 &5742678685086566059
 PrefabInstance:
   m_ObjectHideFlags: 0
