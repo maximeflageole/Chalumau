@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Placeable : MonoBehaviour
 {
+    [SerializeField]
+    protected float m_yOffset = 1.1f;
     [SerializeField] 
     protected float m_clippingUnitValue = 1.0f;
     [SerializeField]
@@ -72,7 +74,7 @@ public class Placeable : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 200, layerMask))
         {
             Vector3 clippedPoint = new Vector3(Mathf.Floor(hit.point.x),
-               hit.point.y,
+               hit.point.y + m_yOffset,
                Mathf.Floor(hit.point.z));
 
             m_cornerPosition = new Vector2Int((int)clippedPoint.x, (int)clippedPoint.z);
