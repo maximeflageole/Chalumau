@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c51d0d36b5b1374ca47748c363cbd98, type: 3}
-  m_Name: Building1
+  m_Name: Building2
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 5744322243674715867, guid: 00784f54ba0594343a8b32f2deed086f, type: 3}
+  m_prefab: {fileID: 5744322243674715867, guid: cb3857dd824c12441a47dbc93c7f7e97, type: 3}
   m_dimensions:
-  - Array: 010100
-  - Array: 010100
-  - Array: 010000
+  - Array: 0101
+  - Array: 0000

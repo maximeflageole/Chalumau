@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class Placeable : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Placeable : MonoBehaviour
     protected Vector2Int m_cornerPosition;
     protected bool m_inPlacement = true;
 
+    [field:SerializeField]
     public List<Vector2Int> OccupiedSpace { get; protected set; } = new List<Vector2Int>();
 
     private void Awake()
@@ -82,7 +84,7 @@ public class Placeable : MonoBehaviour
                Mathf.Floor(hit.point.z));
 
             m_cornerPosition = new Vector2Int((int)clippedPoint.x, (int)clippedPoint.z);
-            transform.position = clippedPoint;
+            transform.position = clippedPoint + new Vector3(0.5f, 0, 0.5f);
         }
     }
 
@@ -112,68 +114,8 @@ public class Placeable : MonoBehaviour
     {
         OccupiedSpace.Clear();
         Vector2Int currentPos = new Vector2Int(m_cornerPosition.x, m_cornerPosition.y);
-
-        for (int i = 0; i < m_buildingData.m_dimensions.Length; i++)
-        {
-            currentPos.y = m_cornerPosition.y;
-
-            for (int j = 0; j < m_buildingData.m_dimensions[i].Array.Length; j++)
-            {
-                if (m_buildingData.m_dimensions[i].Array[j])
-                {
-                    OccupiedSpace.Add(new Vector2Int(currentPos.x, currentPos.y));
-                }
-                TranslateAccordingToDirection(ref currentPos, false, true);
-            }
-            TranslateAccordingToDirection(ref currentPos, true, false);
-        }
+        OccupiedSpace = GetRotatedOccupiedEmplacement(currentPos);
         SetMaterials(EPlaceableState.Placed);
-    }
-
-    void TranslateAccordingToDirection(ref Vector2Int vector, bool x, bool y)
-    {
-        Vector2Int translation = new Vector2Int();
-        if (x)
-        {
-            switch (Direction)
-            {
-                case ECardinalDirection.North:
-                    translation += new Vector2Int(1, 0);
-                    break;
-                case ECardinalDirection.East:
-                    translation += new Vector2Int(0, 1);
-                    break;
-                case ECardinalDirection.South:
-                    translation += new Vector2Int(-1, 0);
-                    break;
-                case ECardinalDirection.West:
-                    translation += new Vector2Int(0, -1);
-                    break;
-                case ECardinalDirection.Count:
-                    break;
-            }
-        }
-        if (y)
-        {
-            switch (Direction)
-            {
-                case ECardinalDirection.North:
-                    translation += new Vector2Int(0, 1);
-                    break;
-                case ECardinalDirection.East:
-                    translation += new Vector2Int(1, 0);
-                    break;
-                case ECardinalDirection.South:
-                    translation += new Vector2Int(0, -1);
-                    break;
-                case ECardinalDirection.West:
-                    translation += new Vector2Int(-1, 0);
-                    break;
-                case ECardinalDirection.Count:
-                    break;
-            }
-        }
-        vector += translation;
     }
 
     protected void SetMaterials(EPlaceableState state)
@@ -196,6 +138,39 @@ public class Placeable : MonoBehaviour
         {
             renderer.material = material;
         }
+    }
+
+    protected List<Vector2Int> GetRotatedOccupiedEmplacement(Vector2Int origin)
+    {
+        var rotatedArray = new List<Vector2Int>();
+
+        for (var i = 0; i < m_buildingData.m_dimensions.Length; i++)
+        {
+            for (var j = 0; j < m_buildingData.m_dimensions[i].Array.Length; j++)
+            {
+                if (m_buildingData.m_dimensions[i].Array[j])
+                {
+                    switch (Direction)
+                    {
+                        case ECardinalDirection.North:
+                            rotatedArray.Add(new Vector2Int(origin.x + i, origin.y + j));
+                            break;
+                        case ECardinalDirection.East:
+                            rotatedArray.Add(new Vector2Int(origin.x + j, origin.y - i));
+                            break;
+                        case ECardinalDirection.South:
+                            rotatedArray.Add(new Vector2Int(origin.x - i, origin.y - j));
+                            break;
+                        case ECardinalDirection.West:
+                            rotatedArray.Add(new Vector2Int(origin.x - j, origin.y + i));
+                            break;
+                        case ECardinalDirection.Count:
+                            break;
+                    }
+                }
+            }
+        }
+        return rotatedArray;
     }
 }
 

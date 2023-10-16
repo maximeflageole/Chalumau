@@ -4,10 +4,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]
-    private BuildingData m_buildingData;
-
-
     private Placeable m_buildingInPlacement;
 
     private void Awake()
@@ -19,14 +15,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnClick()
+    public void OnBuildingBtnClicked(BuildingData buildingData)
     {
         if (!CanSpawnBuilding())
         {
             return;
         }
 
-        m_buildingInPlacement = Instantiate(m_buildingData.m_prefab).GetComponent<Placeable>();
+        m_buildingInPlacement = Instantiate(buildingData.m_prefab).GetComponent<Placeable>();
     }
 
     private bool CanSpawnBuilding()

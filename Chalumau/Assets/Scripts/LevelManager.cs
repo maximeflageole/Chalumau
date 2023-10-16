@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager _Instance;
 
+    [SerializeField]
     private List<Placeable> m_placeableObjects;
 
     private void Awake()
