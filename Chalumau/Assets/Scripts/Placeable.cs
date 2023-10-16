@@ -25,7 +25,7 @@ public class Placeable : MonoBehaviour
     protected bool m_inPlacement = true;
 
     [field:SerializeField]
-    public List<Vector2Int> OccupiedSpace { get; protected set; } = new List<Vector2Int>();
+    public List<Vector2Int> OccupiedSpaces { get; protected set; } = new List<Vector2Int>();
 
     private void Awake()
     {
@@ -64,7 +64,7 @@ public class Placeable : MonoBehaviour
     void PlaceBuilding()
     {
         m_inPlacement = false;
-        OccupiedSpace = new List<Vector2Int>();
+        OccupiedSpaces = new List<Vector2Int>();
         UpdateOccupiedSpace();
         LevelManager._Instance.PlacePlaceable(this);
         GameManager.Instance.OnBuildingPlaced();
@@ -111,9 +111,9 @@ public class Placeable : MonoBehaviour
 
     protected void UpdateOccupiedSpace()
     {
-        OccupiedSpace.Clear();
+        OccupiedSpaces.Clear();
         Vector2Int currentPos = new Vector2Int(m_cornerPosition.x, m_cornerPosition.y);
-        OccupiedSpace = GetRotatedOccupiedEmplacement(currentPos);
+        OccupiedSpaces = GetRotatedOccupiedEmplacement(currentPos);
         SetMaterials(EPlaceableState.Placed);
     }
 
