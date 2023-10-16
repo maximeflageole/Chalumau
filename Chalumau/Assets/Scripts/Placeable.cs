@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Placeable : MonoBehaviour
@@ -15,6 +16,7 @@ public class Placeable : MonoBehaviour
     protected Material m_validMaterial;
     [SerializeField]
     protected Material m_placedMaterial;
+    protected List<Renderer> m_allRenderers = new List<Renderer>();
 
     [field:SerializeField]
     public ECardinalDirection Direction { get; protected set; } = ECardinalDirection.North;
@@ -25,12 +27,13 @@ public class Placeable : MonoBehaviour
 
     private void Awake()
     {
+        m_allRenderers = GetComponentsInChildren<Renderer>().ToList();
         if (m_inPlacement)
         {
-            GetComponent<Renderer>().material = m_validMaterial;
+            SetMaterials(EPlaceableState.Valid);
             return;
         }
-        GetComponent<Renderer>().material = m_placedMaterial;
+        SetMaterials(EPlaceableState.Placed);
     }
 
     // Update is called once per frame
@@ -48,11 +51,11 @@ public class Placeable : MonoBehaviour
             UpdateOccupiedSpace();
             if (LevelManager._Instance.CanPlacePlaceable(this))
             {
-                GetComponent<Renderer>().material = m_validMaterial;
+                SetMaterials(EPlaceableState.Valid);
             }
             else
             {
-                GetComponent<Renderer>().material = m_invalidMaterial;
+                SetMaterials(EPlaceableState.Invalid);
             }
         }
     }
@@ -63,6 +66,7 @@ public class Placeable : MonoBehaviour
         OccupiedSpace = new List<Vector2Int>();
         UpdateOccupiedSpace();
         LevelManager._Instance.PlacePlaceable(this);
+        GameManager.Instance.OnBuildingPlaced();
     }
 
     void UpdateBuildingLocation()
@@ -84,7 +88,7 @@ public class Placeable : MonoBehaviour
 
     void UpdateBuildingRotation()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             transform.Rotate(new Vector3(0, -90, 0));
             Direction--;
@@ -95,7 +99,7 @@ public class Placeable : MonoBehaviour
             Direction = (ECardinalDirection)((int)Direction % (int)(ECardinalDirection.Count));
             Debug.Log(Direction.ToString());
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Direction++;
             transform.Rotate(new Vector3(0, 90, 0));
@@ -123,7 +127,7 @@ public class Placeable : MonoBehaviour
             }
             TranslateAccordingToDirection(ref currentPos, true, false);
         }
-        GetComponent<Renderer>().material = m_placedMaterial;
+        SetMaterials(EPlaceableState.Placed);
     }
 
     void TranslateAccordingToDirection(ref Vector2Int vector, bool x, bool y)
@@ -171,4 +175,33 @@ public class Placeable : MonoBehaviour
         }
         vector += translation;
     }
+
+    protected void SetMaterials(EPlaceableState state)
+    {
+        Material material = null;
+        switch (state)
+        {
+            case EPlaceableState.Invalid:
+                material = m_invalidMaterial;
+                break;
+            case EPlaceableState.Valid:
+                material = m_validMaterial;
+                break;
+            case EPlaceableState.Placed:
+                material = m_placedMaterial;
+                break;
+        }
+
+        foreach (var renderer in m_allRenderers)
+        {
+            renderer.material = material;
+        }
+    }
+}
+
+public enum EPlaceableState
+{
+    Invalid,
+    Valid,
+    Placed
 }
