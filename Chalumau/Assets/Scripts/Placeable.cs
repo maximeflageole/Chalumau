@@ -43,17 +43,16 @@ public class Placeable : MonoBehaviour
     {
         if (m_inPlacement)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                PlaceBuilding();
-                return;
-            }
             UpdateBuildingLocation();
             UpdateBuildingRotation();
             UpdateOccupiedSpace();
             if (LevelManager._Instance.CanPlacePlaceable(this))
             {
                 SetMaterials(EPlaceableState.Valid);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    PlaceBuilding();
+                }
             }
             else
             {
