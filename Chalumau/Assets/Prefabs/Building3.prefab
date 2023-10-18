@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 5747979642052487461}
   - component: {fileID: 5755809161585446735}
   - component: {fileID: 5715502917457449375}
-  - component: {fileID: 5742678685470601624}
+  - component: {fileID: -6502545403086055593}
   m_Layer: 0
   m_Name: Building3
   m_TagString: Untagged
@@ -466,7 +466,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2d56fe2ad841a4f429c64626c08eaae5, type: 3}
---- !u!114 &5742678685470601624
+--- !u!114 &-6502545403086055593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -475,17 +475,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5744322243674715867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dfca1f32fa46342820830400d93af7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dae3a1ce2b665c4191e1b9fabe0f7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_yOffset: 1.1
-  m_clippingUnitValue: 1
-  m_buildingData: {fileID: 11400000, guid: f2cdaff495688584a9736d0b39f3a8cb, type: 2}
-  m_invalidMaterial: {fileID: 2100000, guid: c70e075a2144ba04784d74b7b2889fd3, type: 2}
-  m_validMaterial: {fileID: 2100000, guid: 0e6d9344d5bbb9a4abca1058f4e295d6, type: 2}
   m_placedMaterial: {fileID: 2100000, guid: 41680dad0f0243748b4e228f49a2e3c4, type: 2}
   <Direction>k__BackingField: 0
-  <OccupiedSpace>k__BackingField: []
+  <OccupiedSpaces>k__BackingField: []
+  m_clippingUnitValue: 1
+  m_buildingData: {fileID: 11400000, guid: f2cdaff495688584a9736d0b39f3a8cb, type: 2}
+  m_invalidMaterial: {fileID: 2100000, guid: 411af7a2a118a734382169c9eec19496, type: 2}
+  m_validMaterial: {fileID: 2100000, guid: 7d74716aa009613458d99963683e2c40, type: 2}
 --- !u!1001 &5742678685086566059
 PrefabInstance:
   m_ObjectHideFlags: 0

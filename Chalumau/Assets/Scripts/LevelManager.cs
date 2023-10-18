@@ -12,12 +12,12 @@ public class LevelManager : MonoBehaviour
     private GameObject m_tilePrefabB;
 
     [SerializeField]
-    private List<Placeable> m_placeableObjects;
+    private List<Building> m_placeableObjects;
 
     private void Awake()
     {
         _Instance = this;
-        m_placeableObjects = new List<Placeable>();
+        m_placeableObjects = new List<Building>();
         InstantiateMap();
     }
 
@@ -39,14 +39,14 @@ public class LevelManager : MonoBehaviour
                     prefab = m_tilePrefabB;
                     type = ETileType.B;
                 }
-                var go = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, transform);
+                var go = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, transform).gameObject;
                 go.GetComponent<Tile>().SetTileType(type);
 
             }
         }
     }
 
-    public bool CanPlacePlaceable(Placeable placeable)
+    public bool CanPlacePlaceable(Building placeable)
     {
         if (!InLevelDimensions(placeable.OccupiedSpaces))
         {
@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    private static bool Collides(Placeable placeable1, Placeable placeable2)
+    private static bool Collides(Building placeable1, Building placeable2)
     {
         foreach (var space in placeable1.OccupiedSpaces)
         {
@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    public void PlacePlaceable(Placeable placeable)
+    public void PlacePlaceable(Building placeable)
     {
         m_placeableObjects.Add(placeable);
     }

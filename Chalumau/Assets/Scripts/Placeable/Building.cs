@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
-public class Placeable : MonoBehaviour
+public class Building : Placeable
 {
-    [SerializeField]
-    protected float m_yOffset = 1.1f;
     [SerializeField] 
     protected float m_clippingUnitValue = 1.0f;
     [SerializeField]
@@ -15,19 +12,11 @@ public class Placeable : MonoBehaviour
     protected Material m_invalidMaterial;
     [SerializeField]
     protected Material m_validMaterial;
-    [SerializeField]
-    protected Material m_placedMaterial;
     protected List<Renderer> m_allRenderers = new List<Renderer>();
 
-    [field:SerializeField]
-    public ECardinalDirection Direction { get; protected set; } = ECardinalDirection.North;
-    protected Vector2Int m_cornerPosition;
     protected bool m_inPlacement = true;
 
-    [field:SerializeField]
-    public List<Vector2Int> OccupiedSpaces { get; protected set; } = new List<Vector2Int>();
-
-    private void Awake()
+    protected void Awake()
     {
         m_allRenderers = GetComponentsInChildren<Renderer>().ToList();
         if (m_inPlacement)

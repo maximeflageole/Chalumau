@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private Placeable m_buildingInPlacement;
+    private Building m_buildingInPlacement;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        m_buildingInPlacement = Instantiate(buildingData.m_prefab).GetComponent<Placeable>();
+        m_buildingInPlacement = Instantiate(buildingData.m_prefab).GetComponent<Building>();
     }
 
     private bool CanSpawnBuilding()
