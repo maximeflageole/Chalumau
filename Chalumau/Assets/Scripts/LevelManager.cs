@@ -18,18 +18,30 @@ public class LevelManager : MonoBehaviour
     {
         _Instance = this;
         m_placeableObjects = new List<Placeable>();
+        InstantiateMap();
+    }
+
+    private void InstantiateMap()
+    {
         for (var i = 0; i < m_mapDimensions.x; i++)
         {
             for (var j = 0; j < m_mapDimensions.y; j++)
             {
-                if ((i+j)% 2 == 0)
+                GameObject prefab;
+                ETileType type = ETileType.Count;
+                if ((i + j) % 2 == 0)
                 {
-                    Instantiate(m_tilePrefabA, new Vector3(i, 0, j), Quaternion.identity, transform);
+                    prefab = m_tilePrefabA;
+                    type = ETileType.A;
                 }
                 else
                 {
-                    Instantiate(m_tilePrefabB, new Vector3(i, 0, j), Quaternion.identity, transform);
+                    prefab = m_tilePrefabB;
+                    type = ETileType.B;
                 }
+                var go = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, transform);
+                go.GetComponent<Tile>().SetTileType(type);
+
             }
         }
     }
