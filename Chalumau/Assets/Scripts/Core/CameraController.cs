@@ -5,6 +5,10 @@ public class CameraController : MonoBehaviour
     private float m_cameraCurrentSpeed;
 
     [SerializeField]
+    private Camera m_thisCamera;
+    [SerializeField]
+    private Camera m_ui_Camera;
+    [SerializeField]
     private float m_cameraNormalSpeed;
     [SerializeField]
     private float m_cameraFastSpeed;
@@ -45,8 +49,10 @@ public class CameraController : MonoBehaviour
         var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
         if (mouseScroll != 0)
         {
-            Camera.main.orthographicSize += mouseScroll;
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, m_cameraClamp.x, m_cameraClamp.y);
+            m_thisCamera.orthographicSize += mouseScroll;
+            m_ui_Camera.orthographicSize += mouseScroll;
+            m_thisCamera.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, m_cameraClamp.x, m_cameraClamp.y);
+            m_ui_Camera.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, m_cameraClamp.x, m_cameraClamp.y);
         }
     }
 }
