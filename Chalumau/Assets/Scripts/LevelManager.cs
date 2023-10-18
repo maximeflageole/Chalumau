@@ -6,6 +6,10 @@ public class LevelManager : MonoBehaviour
     public static LevelManager _Instance;
     [SerializeField]
     private Vector2Int m_mapDimensions = new Vector2Int();
+    [SerializeField]
+    private GameObject m_tilePrefabA;
+    [SerializeField]
+    private GameObject m_tilePrefabB;
 
     [SerializeField]
     private List<Placeable> m_placeableObjects;
@@ -14,6 +18,20 @@ public class LevelManager : MonoBehaviour
     {
         _Instance = this;
         m_placeableObjects = new List<Placeable>();
+        for (var i = 0; i < m_mapDimensions.x; i++)
+        {
+            for (var j = 0; j < m_mapDimensions.y; j++)
+            {
+                if ((i+j)% 2 == 0)
+                {
+                    Instantiate(m_tilePrefabA, new Vector3(i, 0, j), Quaternion.identity, transform);
+                }
+                else
+                {
+                    Instantiate(m_tilePrefabB, new Vector3(i, 0, j), Quaternion.identity, transform);
+                }
+            }
+        }
     }
 
     public bool CanPlacePlaceable(Placeable placeable)
