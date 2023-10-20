@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +8,32 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private Vector2Int m_mapDimensions = new Vector2Int();
     [SerializeField]
+    private LevelData m_data;
+    [SerializeField]
     private GameObject m_tilePrefabA;
     [SerializeField]
     private GameObject m_tilePrefabB;
 
     [SerializeField]
-    private List<Building> m_placeableObjects;
+    private List<Placeable> m_placeableObjects;
 
     private void Awake()
     {
         _Instance = this;
-        m_placeableObjects = new List<Building>();
+        m_placeableObjects = new List<Placeable>();
         InstantiateMap();
     }
 
     private void InstantiateMap()
     {
+        foreach (var supply in m_data.levelSupplies)
+        {
+            var go = Instantiate(supply.SupplySource, new Vector3(supply.CornerLocation.x, 0, supply.CornerLocation.y),
+                Quaternion.identity, transform).gameObject;
+            var placeable = go.GetComponent<Placeable>();
+            placeable.Place();
+        }
+
         for (var i = 0; i < m_mapDimensions.x; i++)
         {
             for (var j = 0; j < m_mapDimensions.y; j++)
@@ -46,7 +57,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public bool CanPlacePlaceable(Building placeable)
+    public bool CanPlacePlaceable(Placeable placeable)
     {
         if (!InLevelDimensions(placeable.OccupiedSpaces))
         {
@@ -62,7 +73,7 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    private static bool Collides(Building placeable1, Building placeable2)
+    private static bool Collides(Placeable placeable1, Placeable placeable2)
     {
         foreach (var space in placeable1.OccupiedSpaces)
         {
@@ -78,7 +89,7 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    public void PlacePlaceable(Building placeable)
+    public void PlacePlaceable(Placeable placeable)
     {
         m_placeableObjects.Add(placeable);
     }

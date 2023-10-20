@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private Building m_buildingInPlacement;
+    private Placeable m_placeableInPlacement;
 
     private void Awake()
     {
@@ -15,23 +15,23 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnBuildingBtnClicked(BuildingData buildingData)
+    public void OnBuildingBtnClicked(PlaceableData placeableData)
     {
         if (!CanSpawnBuilding())
         {
             return;
         }
 
-        m_buildingInPlacement = Instantiate(buildingData.m_prefab).GetComponent<Building>();
+        m_placeableInPlacement = Instantiate(placeableData.m_prefab).GetComponent<Placeable>();
     }
 
     private bool CanSpawnBuilding()
     {
-        return m_buildingInPlacement == null;
+        return m_placeableInPlacement == null;
     }
 
     public void OnBuildingPlaced()
     {
-        m_buildingInPlacement = null;
+        m_placeableInPlacement = null;
     }
 }

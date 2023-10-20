@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348815116785912648}
   - component: {fileID: 804296592295416080}
-  - component: {fileID: 8706970007727541902}
+  - component: {fileID: 8855691866955993889}
   m_Layer: 0
   m_Name: Forest(Clone)
   m_TagString: Untagged
@@ -410,7 +410,7 @@ Transform:
   m_GameObject: {fileID: 2909717438426289027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.979, y: 0.27, z: 4.097}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -447,7 +447,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.68752, y: 3.3226292, z: 4.6643553}
   m_Center: {x: 0.4331183, y: 1.6463149, z: -0.404571}
---- !u!114 &8706970007727541902
+--- !u!114 &8855691866955993889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,11 +456,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2909717438426289027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676d0d5117186ff409d0fb5e2b66d24d, type: 3}
+  m_Script: {fileID: 11500000, guid: e9dfca1f32fa46342820830400d93af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_inPlacement: 0
   m_yOffset: 1.1
+  m_clippingUnitValue: 1
+  m_invalidMaterial: {fileID: 0}
+  m_validMaterial: {fileID: 0}
   m_placedMaterial: {fileID: 0}
+  m_data: {fileID: 11400000, guid: 628006c7b72e2364ca0c6aaa37b47f39, type: 2}
   <Direction>k__BackingField: 0
   <OccupiedSpaces>k__BackingField: []
   <SuppliesList>k__BackingField: 

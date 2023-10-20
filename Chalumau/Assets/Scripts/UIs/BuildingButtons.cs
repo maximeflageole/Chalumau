@@ -5,10 +5,10 @@ using UnityEngine;
 public class BuildingButtons : MonoBehaviour
 {
     [SerializeField]
-    protected BuildingData m_buildingData;
+    protected PlaceableData m_placeableData;
 
     public void OnClick()
     {
-        GameManager.Instance.OnBuildingBtnClicked(m_buildingData);
+        GameManager.Instance.OnBuildingBtnClicked(m_placeableData);
     }
 }

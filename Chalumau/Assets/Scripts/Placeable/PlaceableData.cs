@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Building", menuName = "Building")]
-public class BuildingData : ScriptableObject
+[CreateAssetMenu(fileName = "Placeable", menuName = "Placeable", order = 1)]
+public class PlaceableData : ScriptableObject
 {
-    public GameObject m_prefab;
     public BoolArray[] m_dimensions = new BoolArray[5];
+    public GameObject m_prefab;
 }
 
 [System.Serializable]

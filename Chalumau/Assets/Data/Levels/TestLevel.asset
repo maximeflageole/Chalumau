@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c51d0d36b5b1374ca47748c363cbd98, type: 3}
-  m_Name: Building1
+  m_Script: {fileID: 11500000, guid: 53c53af338ee553419f3b3f9ff1fe8b9, type: 3}
+  m_Name: TestLevel
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 5744322243674715867, guid: 00784f54ba0594343a8b32f2deed086f, type: 3}
-  m_dimensions:
-  - Array: 010100
-  - Array: 010100
-  - Array: 010000
+  levelSupplies:
+  - SupplySource: {fileID: 2909717438426289027, guid: 127b475cfc7119d4babb5a04c8028909, type: 3}
+    CornerLocation: {x: 3, y: 5}
+    Orientation: 0
