@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 258559756}
   - component: {fileID: 258559755}
   - component: {fileID: 258559757}
+  - component: {fileID: 258559758}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -185,6 +186,22 @@ MonoBehaviour:
   m_tilePrefabA: {fileID: 7765990567340979410, guid: 5e6795055c3bc4644bc7827f92ce6728, type: 3}
   m_tilePrefabB: {fileID: 7765990567340979410, guid: 32d374319e8006243af3c3f760810062, type: 3}
   m_placeableObjects: []
+--- !u!114 &258559758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258559754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd598b0336a66444975fe554c274c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SuppliesData>k__BackingField:
+  - {fileID: 11400000, guid: 7a16537f75a9c3d41b1e97f6763553c0, type: 2}
+  - {fileID: 11400000, guid: e1644fd6acfdb7142abaebd43afe497d, type: 2}
+  - {fileID: 11400000, guid: 5e4c62ee53c9d0d4ea1ef507f5530f56, type: 2}
 --- !u!1 &395954884
 GameObject:
   m_ObjectHideFlags: 0

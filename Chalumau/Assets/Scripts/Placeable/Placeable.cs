@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Placeable : MonoBehaviour
 {
@@ -17,7 +15,10 @@ public class Placeable : MonoBehaviour
     protected Material m_invalidMaterial;
     [SerializeField]
     protected Material m_validMaterial;
+
     protected List<Renderer> m_allRenderers = new List<Renderer>();
+    [SerializeField]
+    protected SuppliesPanel m_suppliesPanel;
 
     [SerializeField]
     protected Material m_placedMaterial;
@@ -31,9 +32,6 @@ public class Placeable : MonoBehaviour
     [field: SerializeField]
     public List<Vector2Int> OccupiedSpaces { get; protected set; } = new List<Vector2Int>();
 
-    [field: SerializeField]
-    public List<ESupplyType> SuppliesList { get; protected set; } = new List<ESupplyType>();
-
     protected void Awake()
     {
         m_allRenderers = GetComponentsInChildren<Renderer>().ToList();
@@ -43,6 +41,7 @@ public class Placeable : MonoBehaviour
             return;
         }
         SetMaterials(EPlaceableState.Placed);
+        m_suppliesPanel?.SetSupplies(m_data.SuppliesList);
     }
 
     // Update is called once per frame
