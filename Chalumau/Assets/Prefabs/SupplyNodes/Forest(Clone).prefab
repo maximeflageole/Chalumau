@@ -150,6 +150,59 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1821089208777185188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2168411131077464445}
+  - component: {fileID: 5957863549443260214}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2168411131077464445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821089208777185188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 348815116785912648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5957863549443260214
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821089208777185188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.68752, y: 3.3226292, z: 4.6643553}
+  m_Center: {x: 0.4331183, y: 1.6463149, z: -0.404571}
 --- !u!1 &1937311358555198477
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +445,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348815116785912648}
-  - component: {fileID: 804296592295416080}
   - component: {fileID: 8855691866955993889}
   m_Layer: 0
   m_Name: Forest(Clone)
@@ -411,9 +463,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
+  m_LocalScale: {x: 0.82802576, y: 0.82802576, z: 0.82802576}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2168411131077464445}
   - {fileID: 7060805459767531368}
   - {fileID: 6624892599440114431}
   - {fileID: 2575097824738281568}
@@ -426,27 +479,6 @@ Transform:
   - {fileID: 7800602335923445298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &804296592295416080
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2909717438426289027}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.68752, y: 3.3226292, z: 4.6643553}
-  m_Center: {x: 0.4331183, y: 1.6463149, z: -0.404571}
 --- !u!114 &8855691866955993889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inPlacement: 0
-  m_yOffset: 1.1
+  m_yOffset: 0
+  m_offset: {x: 1, y: 0.4, z: 1.9}
   m_clippingUnitValue: 1
   m_invalidMaterial: {fileID: 0}
   m_validMaterial: {fileID: 0}

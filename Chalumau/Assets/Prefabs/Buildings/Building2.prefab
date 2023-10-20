@@ -479,6 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inPlacement: 1
   m_yOffset: 1.1
+  m_offset: {x: 0, y: 0, z: 0}
   m_clippingUnitValue: 1
   m_invalidMaterial: {fileID: 2100000, guid: 411af7a2a118a734382169c9eec19496, type: 2}
   m_validMaterial: {fileID: 2100000, guid: 7d74716aa009613458d99963683e2c40, type: 2}

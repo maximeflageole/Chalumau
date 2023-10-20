@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_dimensions:
   - Array: 0101
-  - Array: 0100
+  - Array: 0001
   m_prefab: {fileID: 5744322243674715867, guid: 49498204bbeb9af46a4d2d858d126e6d, type: 3}

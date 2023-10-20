@@ -12,6 +12,8 @@ public class Placeable : MonoBehaviour
     [SerializeField]
     protected float m_yOffset = 1.1f;
     [SerializeField]
+    protected Vector3 m_offset = Vector3.zero;
+    [SerializeField]
     protected float m_clippingUnitValue = 1.0f;
     [SerializeField]
     protected Material m_invalidMaterial;
@@ -50,8 +52,8 @@ public class Placeable : MonoBehaviour
     {
         if (m_inPlacement)
         {
-            UpdateBuildingLocation();
-            //UpdateBuildingRotation();
+            UpdateBuildingLocationInPlacement();
+            UpdateBuildingRotation();
             UpdateOccupiedSpace();
             if (CanPlace())
             {
@@ -73,13 +75,24 @@ public class Placeable : MonoBehaviour
         OccupiedSpaces = new List<Vector2Int>();
         UpdateOccupiedSpace();
         LevelManager._Instance.PlacePlaceable(this);
-        transform.Translate(Vector3.up * m_yOffset);
         m_inPlacement = false;
         GameManager.Instance.OnBuildingPlaced();
         SetMaterials(EPlaceableState.Placed);
     }
 
-    protected void UpdateBuildingLocation()
+    public virtual void PlaceAtLocation(Vector2Int location)
+    {
+        OccupiedSpaces = new List<Vector2Int>();
+        m_cornerPosition = location;
+        UpdateOccupiedSpace();
+        LevelManager._Instance.PlacePlaceable(this);
+        transform.SetPositionAndRotation(new Vector3(transform.position.x, 0, transform.position.z) + m_offset, transform.rotation);
+        m_inPlacement = false;
+        GameManager.Instance.OnBuildingPlaced();
+        SetMaterials(EPlaceableState.Placed);
+    }
+
+    protected void UpdateBuildingLocationInPlacement()
     {
         //TODO MF: All this should be cleaned
         LayerMask layerMask = 1 << LayerMask.NameToLayer("Plane"); ;
@@ -92,7 +105,7 @@ public class Placeable : MonoBehaviour
                Mathf.Floor(hit.point.z));
 
             m_cornerPosition = new Vector2Int((int)clippedPoint.x, (int)clippedPoint.z);
-            transform.position = clippedPoint + new Vector3(0.5f, 0, 0.5f);
+            transform.position = clippedPoint + m_offset;
         }
     }
 

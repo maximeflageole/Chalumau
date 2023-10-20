@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Building5
   m_EditorClassIdentifier: 
   m_dimensions:
-  - Array: 010101
   - Array: 010100
-  - Array: 000000
+  - Array: 010100
+  - Array: 010000
   m_prefab: {fileID: 5744322243674715867, guid: 00784f54ba0594343a8b32f2deed086f, type: 3}

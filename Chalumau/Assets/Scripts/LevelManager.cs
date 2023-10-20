@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
             var go = Instantiate(supply.SupplySource, new Vector3(supply.CornerLocation.x, 0, supply.CornerLocation.y),
                 Quaternion.identity, transform).gameObject;
             var placeable = go.GetComponent<Placeable>();
-            placeable.Place();
+            placeable.PlaceAtLocation(supply.CornerLocation);
         }
 
         for (var i = 0; i < m_mapDimensions.x; i++)
