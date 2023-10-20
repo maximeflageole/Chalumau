@@ -10,8 +10,6 @@ public class Placeable : MonoBehaviour
     protected bool m_inPlacement = true;
 
     [SerializeField]
-    protected float m_yOffset = 1.1f;
-    [SerializeField]
     protected Vector3 m_offset = Vector3.zero;
     [SerializeField]
     protected float m_clippingUnitValue = 1.0f;
@@ -101,7 +99,7 @@ public class Placeable : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 200, layerMask))
         {
             Vector3 clippedPoint = new Vector3(Mathf.Floor(hit.point.x),
-               hit.point.y + m_yOffset,
+               hit.point.y,
                Mathf.Floor(hit.point.z));
 
             m_cornerPosition = new Vector2Int((int)clippedPoint.x, (int)clippedPoint.z);
