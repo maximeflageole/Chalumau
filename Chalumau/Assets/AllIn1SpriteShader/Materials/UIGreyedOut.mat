@@ -55,7 +55,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UIStencil
+  m_Name: UIGreyedOut
   m_Shader: {fileID: 4800000, guid: a53f4bb29f3644b43b5075c6dcfecb32, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -184,7 +184,7 @@ Material:
     - _GrassRadialBend: 0.5
     - _GrassSpeed: 34
     - _GrassWind: 15
-    - _GreyscaleBlend: 0
+    - _GreyscaleBlend: 0.789
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
     - _HandDrawnAmount: 20
@@ -293,7 +293,7 @@ Material:
     - _GradBotRightCol: {r: 0, g: 0, b: 1, a: 1}
     - _GradTopLeftCol: {r: 1, g: 0, b: 0, a: 1}
     - _GradTopRightCol: {r: 1, g: 0, b: 0, a: 1}
-    - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GreyscaleTintColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
     - _HitEffectColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
     - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
     - _InnerOutlineColor: {r: 1, g: 1, b: 1, a: 1}
