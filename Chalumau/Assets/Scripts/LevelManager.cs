@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -70,6 +70,10 @@ public class LevelManager : MonoBehaviour
                 return false;
             }
         }
+        if (!HasSuppliesRequirementsMet(placeable))
+        {
+            return false;
+        }
         return true;
     }
 
@@ -84,6 +88,20 @@ public class LevelManager : MonoBehaviour
                 {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    //TODO MF: Placeables should be put in a dictionary for instant access instead of this
+    private bool TryGetPlaceableAtLocation(Vector2Int location, ref Placeable placeable)
+    {
+        foreach (var placeableObj in m_placeableObjects)
+        {
+            if (placeableObj.IsOnLocation(location))
+            {
+                placeable = placeableObj;
+                return true;
             }
         }
         return false;
@@ -105,6 +123,73 @@ public class LevelManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private bool HasSuppliesRequirementsMet(Placeable placeable)
+    {
+        if (placeable.m_data.SuppliesInputs.Count == 0) return true;
+
+        var adjacentPlaceables = GetAdjacentPlaceables(placeable);
+
+        foreach (var requirement in placeable.m_data.SuppliesInputs)
+        {
+            int requirementCount = requirement.Qty;
+            foreach (var element in adjacentPlaceables)
+            {
+                foreach (var supply in element.m_data.SuppliesOutput)
+                {
+                    if (supply.SupplyType == requirement.SupplyType)
+                    {
+                        requirementCount--;
+                    }
+                }
+            }
+            if (requirementCount > 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private HashSet<Placeable> GetAdjacentPlaceables(Placeable placeable)
+    {
+        HashSet<Placeable> adjacentPlaceables = new HashSet<Placeable>();
+
+        foreach (var locationOccupied in placeable.OccupiedSpaces)
+        {
+            adjacentPlaceables.AddRange(GetAdjacentPlaceablesAtLocation(locationOccupied, placeable));
+        }
+        return adjacentPlaceables;
+    }
+
+    private HashSet<Placeable> GetAdjacentPlaceablesAtLocation(Vector2Int location, Placeable originalPlaceable = null)
+    {
+        HashSet<Placeable> placeables = new HashSet<Placeable>();
+        Placeable placeable = null;
+
+        if (TryGetPlaceableAtLocation(new Vector2Int(location.x + 1, location.y), ref placeable))
+        {
+            if (originalPlaceable != placeable)
+                placeables.Add(placeable);
+        }
+        if (TryGetPlaceableAtLocation(new Vector2Int(location.x - 1, location.y), ref placeable))
+        {
+            if (originalPlaceable != placeable)
+                placeables.Add(placeable);
+        }
+        if (TryGetPlaceableAtLocation(new Vector2Int(location.x, location.y + 1), ref placeable))
+        {
+            if (originalPlaceable != placeable)
+                placeables.Add(placeable);
+        }
+        if (TryGetPlaceableAtLocation(new Vector2Int(location.x, location.y - 1), ref placeable))
+        {
+            if (originalPlaceable != placeable)
+                placeables.Add(placeable);
+        }
+
+        return placeables;
     }
 }
 

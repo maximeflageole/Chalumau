@@ -7,7 +7,9 @@ public class PlaceableData : ScriptableObject
     public BoolArray[] m_dimensions = new BoolArray[5];
     public GameObject m_prefab;
     [field: SerializeField]
-    public List<SupplyQty> SuppliesList { get; protected set; } = new List<SupplyQty>();
+    public List<SupplyQty> SuppliesOutput { get; protected set; } = new List<SupplyQty>();
+    [field: SerializeField]
+    public List<SupplyQty> SuppliesInputs { get; protected set; } = new List<SupplyQty>();
 }
 
 [System.Serializable]

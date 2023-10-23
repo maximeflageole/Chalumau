@@ -41,7 +41,11 @@ public class Placeable : MonoBehaviour
             return;
         }
         SetMaterials(EPlaceableState.Placed);
-        m_suppliesPanel?.SetSupplies(m_data.SuppliesList);
+    }
+
+    private void Start()
+    {
+        m_suppliesPanel?.SetSupplies(m_data.SuppliesOutput);
     }
 
     // Update is called once per frame
@@ -198,6 +202,11 @@ public class Placeable : MonoBehaviour
         {
             renderer.material = material;
         }
+    }
+
+    public bool IsOnLocation(Vector2Int location)
+    {
+        return OccupiedSpaces.Contains(location);
     }
 }
 

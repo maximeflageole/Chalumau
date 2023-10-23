@@ -17,3 +17,7 @@ MonoBehaviour:
   - Array: 010100
   - Array: 010000
   m_prefab: {fileID: 5744322243674715867, guid: 00784f54ba0594343a8b32f2deed086f, type: 3}
+  <SuppliesOutput>k__BackingField: []
+  <SuppliesInputs>k__BackingField:
+  - SupplyType: 2
+    Qty: 2
