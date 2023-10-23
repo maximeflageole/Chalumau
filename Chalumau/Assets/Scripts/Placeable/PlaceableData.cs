@@ -6,6 +6,8 @@ public class PlaceableData : ScriptableObject
 {
     public BoolArray[] m_dimensions = new BoolArray[5];
     public GameObject m_prefab;
+    public uint m_scoreValue = 0;
+
     [field: SerializeField]
     public List<SupplyQty> SuppliesOutput { get; protected set; } = new List<SupplyQty>();
     [field: SerializeField]

@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public List<LevelSupply> levelSupplies = new List<LevelSupply>();
+    public uint ScoreRequired = 1000;
 }
 
 [System.Serializable]

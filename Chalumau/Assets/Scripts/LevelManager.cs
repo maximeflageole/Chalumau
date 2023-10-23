@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,11 +18,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private List<Placeable> m_placeableObjects;
 
+    [SerializeField]
+    private TextMeshProUGUI m_scoreText;
+    private uint m_currentScore = 0;
+
     private void Awake()
     {
         _Instance = this;
         m_placeableObjects = new List<Placeable>();
         InstantiateMap();
+    }
+
+    private void Update()
+    {
+        m_scoreText.text = m_currentScore.ToString() + " / " + m_data.ScoreRequired.ToString();
     }
 
     private void InstantiateMap()
@@ -110,6 +120,7 @@ public class LevelManager : MonoBehaviour
     public void PlacePlaceable(Placeable placeable)
     {
         m_placeableObjects.Add(placeable);
+        m_currentScore += placeable.m_data.m_scoreValue;
     }
 
     public bool InLevelDimensions(List<Vector2Int> occupiedPositions)

@@ -16,6 +16,7 @@ MonoBehaviour:
   - Array: 0101
   - Array: 0000
   m_prefab: {fileID: 5744322243674715867, guid: cb3857dd824c12441a47dbc93c7f7e97, type: 3}
+  m_scoreValue: 10
   <SuppliesOutput>k__BackingField: []
   <SuppliesInputs>k__BackingField:
   - SupplyType: 0
