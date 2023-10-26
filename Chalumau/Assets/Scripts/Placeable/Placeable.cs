@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class Placeable : MonoBehaviour
 {
+    [Header("Visuals")]
     [SerializeField]
-    protected bool m_inPlacement = true;
-
-    [SerializeField]
-    protected Vector3 m_offset = Vector3.zero;
-    [SerializeField]
-    protected float m_clippingUnitValue = 1.0f;
+    protected Material m_placedMaterial;
     [SerializeField]
     protected Material m_invalidMaterial;
     [SerializeField]
     protected Material m_validMaterial;
-
-    protected List<Renderer> m_allRenderers = new List<Renderer>();
+    [SerializeField]
+    protected Vector3 m_offset = Vector3.zero;
     [SerializeField]
     protected SuppliesPanel m_suppliesPanel;
+    protected List<Renderer> m_allRenderers = new List<Renderer>();
 
-    [SerializeField]
-    protected Material m_placedMaterial;
 
+    [Header("GameplayLogic")]
     [SerializeField]
     public PlaceableData m_data;
     [field: SerializeField]
     public ECardinalDirection Direction { get; protected set; } = ECardinalDirection.North;
-    protected Vector2Int m_cornerPosition;
-
     [field: SerializeField]
     public List<Vector2Int> OccupiedSpaces { get; protected set; } = new List<Vector2Int>();
+    protected Vector2Int m_cornerPosition;
+    [SerializeField]
+    protected bool m_inPlacement = true;
+    [SerializeField]
+    protected float m_clippingUnitValue = 1.0f;
+
 
     protected void Awake()
     {
