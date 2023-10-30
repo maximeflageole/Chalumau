@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +31,8 @@ public class Placeable : MonoBehaviour
     protected bool m_inPlacement = true;
     [SerializeField]
     protected float m_clippingUnitValue = 1.0f;
-
+    [field: SerializeField]
+    public Dictionary<ESupplyType, int> SuppliesDict { get; protected set; } = new Dictionary<ESupplyType, int>();
 
     protected void Awake()
     {
@@ -45,7 +47,11 @@ public class Placeable : MonoBehaviour
 
     private void Start()
     {
-        m_suppliesPanel?.SetSupplies(m_data.SuppliesOutput);
+        foreach (var supply in m_data.SuppliesOutput)
+        {
+            SuppliesDict.Add(supply.SupplyType, supply.Qty);
+        }
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -69,6 +75,23 @@ public class Placeable : MonoBehaviour
                 SetMaterials(EPlaceableState.Invalid);
             }
         }
+    }
+
+    public void Consume(List<SupplyQty> suppliesToConsume)
+    {
+        foreach (var supply in suppliesToConsume)
+        {
+            if (SuppliesDict.ContainsKey(supply.SupplyType))
+            {
+                SuppliesDict[supply.SupplyType] = SuppliesDict[supply.SupplyType] - supply.Qty;
+            }
+        }
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        m_suppliesPanel?.SetSupplies(SuppliesDict);
     }
 
     public virtual void Place()
@@ -117,6 +140,29 @@ public class Placeable : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public virtual void RefreshSuppliesDictionary()
+    {
+        foreach (ESupplyType i in Enum.GetValues(typeof(ESupplyType))) 
+        {
+            if (SuppliesDict.ContainsKey(i))
+            {
+                if (SuppliesDict[i] <= 0)
+                {
+                    SuppliesDict.Remove(i);
+                }
+            }
+        }
+        UpdateUI();
+    }
+
+    public virtual void ConsumeResources(ESupplyType supplyType)
+    {
+        if (SuppliesDict.ContainsKey(supplyType))
+        {
+            SuppliesDict[supplyType] -= 1;
+        }
     }
 
     protected virtual void UpdateOccupiedSpace()

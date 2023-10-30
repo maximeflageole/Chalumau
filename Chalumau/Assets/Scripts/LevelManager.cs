@@ -121,6 +121,7 @@ public class LevelManager : MonoBehaviour
     {
         m_placeableObjects.Add(placeable);
         m_currentScore += placeable.m_data.m_scoreValue;
+        ConsumeAdjacentResources(placeable);
     }
 
     public bool InLevelDimensions(List<Vector2Int> occupiedPositions)
@@ -147,9 +148,9 @@ public class LevelManager : MonoBehaviour
             int requirementCount = requirement.Qty;
             foreach (var element in adjacentPlaceables)
             {
-                foreach (var supply in element.m_data.SuppliesOutput)
+                foreach (var supply in element.SuppliesDict)
                 {
-                    if (supply.SupplyType == requirement.SupplyType)
+                    if (supply.Key == requirement.SupplyType)
                     {
                         requirementCount--;
                     }
@@ -161,6 +162,26 @@ public class LevelManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void ConsumeAdjacentResources(Placeable placeable)
+    {
+        //Assuming you already verified with HasSuppliesRequirementsMet
+        if (placeable.m_data.SuppliesInputs.Count == 0) return;
+
+        var adjacentPlaceables = GetAdjacentPlaceables(placeable);
+
+        foreach (var requirement in placeable.m_data.SuppliesInputs)
+        {
+            foreach (var adjacentPlaceable in adjacentPlaceables)
+            {
+                adjacentPlaceable.ConsumeResources(requirement.SupplyType);
+            }
+        }
+        foreach (var adjacentPlaceable in adjacentPlaceables)
+        {
+            adjacentPlaceable.RefreshSuppliesDictionary();
+        }
     }
 
     private HashSet<Placeable> GetAdjacentPlaceables(Placeable placeable)

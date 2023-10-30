@@ -16,3 +16,7 @@ MonoBehaviour:
   - SupplySource: {fileID: 2909717438426289027, guid: 127b475cfc7119d4babb5a04c8028909, type: 3}
     CornerLocation: {x: 3, y: 5}
     Orientation: 0
+  - SupplySource: {fileID: 2909717438426289027, guid: 127b475cfc7119d4babb5a04c8028909, type: 3}
+    CornerLocation: {x: 8, y: 7}
+    Orientation: 0
+  ScoreRequired: 1000

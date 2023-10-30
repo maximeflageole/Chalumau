@@ -8,14 +8,22 @@ public class SuppliesPanel : MonoBehaviour
     [SerializeField]
     private List<ListOfImages> m_images = new List<ListOfImages>();
 
-    public void SetSupplies(List<SupplyQty> supplies)
+    public void SetSupplies(Dictionary<ESupplyType, int> currentSupplies)
     {
-        for (int i = 0; i < supplies.Count; i++)
+        foreach (var imageList in m_images)
         {
-            var sprite = SuppliesManager.Instance.SuppliesDictionary[supplies[i].SupplyType].Sprite;
-            for (int j = 0; j < supplies[i].Qty; j++)
+            foreach (var image in imageList.Images)
             {
-                m_images[i].Images[j].sprite = sprite;
+                image.enabled = false;
+            }
+        }
+        foreach (var supply in currentSupplies)
+        {
+            var sprite = SuppliesManager.Instance.SuppliesDictionary[supply.Key].Sprite;
+            for (int j = 0; j < currentSupplies[supply.Key]; j++)
+            {
+                m_images[(int)supply.Key].Images[j].sprite = sprite;
+                m_images[(int)supply.Key].Images[j].enabled = true;
             }
         }
     }
