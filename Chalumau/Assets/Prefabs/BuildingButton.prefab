@@ -301,4 +301,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bcb9db671ada04798f8e56bfcc037a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_buildingData: {fileID: 0}
+  m_placeableData: {fileID: 0}
+  m_text: {fileID: 290318326867676153}

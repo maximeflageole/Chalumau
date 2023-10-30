@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private Placeable m_placeableInPlacement;
+    [SerializeField]
+    private HandPanel m_handPanel;
 
     private void Awake()
     {

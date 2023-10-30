@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private LevelData m_data;
     [SerializeField]
+    private Transform m_mapParent;
+    [SerializeField]
     private GameObject m_tilePrefabA;
     [SerializeField]
     private GameObject m_tilePrefabB;
@@ -60,7 +62,7 @@ public class LevelManager : MonoBehaviour
                     prefab = m_tilePrefabB;
                     type = ETileType.B;
                 }
-                var go = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, transform).gameObject;
+                var go = Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity, m_mapParent).gameObject;
                 go.GetComponent<Tile>().SetTileType(type);
 
             }
