@@ -15,6 +15,6 @@ public class BuildingButtons : MonoBehaviour
 
     public void OnClick()
     {
-        GameManager.Instance.OnBuildingBtnClicked(m_placeableData);
+        GameManager.Instance.OnBuildingBtnClicked(this, m_placeableData);
     }
 }
