@@ -24,6 +24,8 @@ public class HandPanel : MonoBehaviour
     public void Draw()
     {
         var data = m_drawPile.DrawCard();
+        if (data == null) return;
+
         m_placeablesData.Add(data);
         var buildingButton = Instantiate(m_buildingButtonPrefab, transform).GetComponent<BuildingButtons>();
         buildingButton.SetData(data);
