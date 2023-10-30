@@ -16,6 +16,19 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (m_placeableInPlacement == null)
+            {
+                return;
+            }
+            Destroy(m_placeableInPlacement.gameObject);
+            m_placeableInPlacement = null;
+        }
+    }
+
     public void OnBuildingBtnClicked(PlaceableData placeableData)
     {
         if (!CanSpawnBuilding())
